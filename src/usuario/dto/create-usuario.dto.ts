@@ -1,7 +1,9 @@
 import { IsEmail, IsNotEmpty, IsOptional, IsPhoneNumber, MinLength } from "class-validator";
 
 export class CreateUsuarioDto {
-    @IsNotEmpty()
+    @IsNotEmpty({message: (validationArguments) => {
+        return `${validationArguments.property} não deve ser vazio`;
+    }})
     @MinLength(3, {message: (validationArguments) => {
         return `${validationArguments.property} deve ser maior ou igual a ${validationArguments.constraints[0]} caracteres`;
     }})
